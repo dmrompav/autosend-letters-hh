@@ -10,7 +10,7 @@ async function init() {
 
   // Функция для автоматического выбора резюме
   function selectResume() {
-    var resume = document.querySelector('#resume_ID_РЕЗЮМЕ');
+    var resume = document.querySelector('#resume_cd1c20ffff0ce01c000039ed1f4d7377344779');
     var message = document.querySelector('[data-qa="vacancy-response-letter-toggle"]');
 
     if (!message) {
@@ -29,15 +29,21 @@ async function init() {
     ).textContent;
     var vacancyName = vacancyTitle.slice(1, vacancyTitle.length - 1);
     var messagesData = {
-      frontend: `Добрый день! 
+      frontend: `
+        Hello!) I hope my letter finds you well!
 
-Меня заинтересовала предложенная Вами вакансия ${vacancyName}. Ознакомившись с перечнем требований к кандидатам, пришел к выводу, что мой опыт работы позволяют мне претендовать на данную должность. 
+        After carefully reading the job description, I am confident that my experience and skills can make a significant contribution to your company.
 
-Обладаю высоким уровнем фронтенд-разработки, свободно говорю по-английски. В работе ответствен, пунктуален и коммуникабелен.
+        My ability to understand FSD architecture, experience with Vue (including Vue 2/3, vuex, pinia), React and even React-Native, knowledge of JavaScript, Typescript, HTML, CSS, as well as experience with CSS preprocessors (SASS, Pug) and TailwindCSS make me a suitable candidate for your team.
+        I can make correct decisions in accordance with the requirements and design business logic on the client side.
+        
+        During the last 4 years, I have been involved in the development of a large dashboard (FamilyOffice), iOS app with UnityFramework integration, panels for displaying transactions and warehouse balances, kanban with Youtrack API, and the creation of an Electron app for touch-screen terminals. Additionally, I actively worked on adaptive layout, wrote npm libraries, authored some articles. And I work on my own project in free time.
 
-Буду с нетерпением ждать ответа и возможности обсудить условия работы и взаимные ожидания на собеседовании. Спасибо, что уделили время. 
+        So, thank you for considering my application, and I look forward to your reply.
 
-Контактные данные прилагаю.`,
+        Best regards,
+        Dmitrii
+      `,
     };
 
     var messageArea = document.querySelector(
@@ -72,9 +78,16 @@ async function init() {
       vacancies[i].click();
 
       await delay(1000);
+
+      const wrongLocationBtn = document.querySelector('button[data-qa="relocation-warning-confirm"]')
+      if (wrongLocationBtn) {
+        wrongLocationBtn.click();
+        await delay(1500);
+      }
+
       selectResume();
 
-      await delay(500);
+      await delay(1000);
       handlerCoverLetter();
       i++;
 
